@@ -21,3 +21,9 @@ feat: Design the user interface:
 - Implement the End Page to show the user's total score and provide options to play again or view history.
 - Design the History Page to display the user's past scores fetched from the data source.
 
+Implement the quiz logic:
+- Track the user's score using a variable that increments for correct answers and decrements for incorrect answers.
+- Implement a countdown timer for each question. If the timer expires, consider the answer incorrect and deduct a point.
+- Handle the user's answer selection and provide immediate feedback on correctness.
+- Proceed to the next question after the user selects an answer or the timer runs out.
+
