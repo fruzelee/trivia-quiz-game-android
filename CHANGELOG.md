@@ -80,3 +80,10 @@ over time.
 feat: Implement 'feature_start', 'feature_quiz', 'feature_end', and 'feature_history' screens
 
 feat: final push for the v1, we will try to solve this assessment in a different approach now!
+
+cleaning up the codebase
+
+Let's solve the assessment in a different approach:
+
+# Quiz Game v2.0
+
