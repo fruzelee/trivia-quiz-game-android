@@ -8,5 +8,6 @@ data class Question(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val question: String,
     val options: List<String>,
-    val correctAnswerIndex: Int
+    val correctAnswerIndex: Int,
+    var userAnswerIndex: Int? = null
 )

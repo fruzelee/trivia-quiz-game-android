@@ -5,4 +5,5 @@ import io.itch.fr.quizgame.feature_quiz.data.entities.Question
 interface QuestionRepository {
     suspend fun getQuestions(): List<Question>
     suspend fun addQuestion(question: Question)
+    suspend fun updateQuestion(question: Question)
 }

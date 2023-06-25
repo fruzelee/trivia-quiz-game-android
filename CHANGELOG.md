@@ -43,3 +43,12 @@ feat: Implement Start Page feature (feature_start)
 - Created StartPageViewModel for handling Start Page logic and navigation
 - Developed StartPage composable function for displaying Start Page UI and handling user interaction
 - Updated MainActivity to use Jetpack Compose for UI and navigate to appropriate destinations
+
+feat: Implement Quiz Page feature (feature_quiz)
+
+- Updated Question entity class to include userAnswerIndex field
+- Updated QuestionDao interface to include update operations for questions
+- Updated QuestionRepository interface to include update operations for questions
+- Implemented updateQuestion operation in QuestionRepositoryImpl
+- Updated QuizViewModel to handle user interaction, score calculation, and question updates
+- Developed QuizPage composable function for displaying questions, handling user interaction, and showing immediate feedback

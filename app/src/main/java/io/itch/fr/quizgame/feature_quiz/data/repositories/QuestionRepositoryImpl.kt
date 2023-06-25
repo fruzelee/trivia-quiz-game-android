@@ -11,4 +11,8 @@ class QuestionRepositoryImpl(private val questionDao: QuestionDao) : QuestionRep
     override suspend fun addQuestion(question: Question) {
         questionDao.insertQuestion(question)
     }
+
+    override suspend fun updateQuestion(question: Question) {
+        questionDao.updateQuestion(question)
+    }
 }

@@ -19,7 +19,7 @@ class QuizViewModel @Inject constructor(
     private val questionRepository: QuestionRepository
 ) : ViewModel() {
 
-    private var questions: List<Question> = emptyList()
+    private lateinit var questions: List<Question>
     private var currentQuestionIndex: Int = 0
     private var userScore: Int = 0
 
@@ -46,13 +46,18 @@ class QuizViewModel @Inject constructor(
 
     fun submitAnswer(selectedAnswerIndex: Int) {
         val currentQuestion = _currentQuestion.value
-        if (currentQuestion != null) {
+        if (currentQuestion != null && currentQuestion.userAnswerIndex == null) {
+            currentQuestion.userAnswerIndex = selectedAnswerIndex
             if (selectedAnswerIndex == currentQuestion.correctAnswerIndex) {
                 userScore++
             } else {
                 userScore = maxOf(0, userScore - 1)
             }
             _score.value = userScore
+
+            viewModelScope.launch {
+                questionRepository.updateQuestion(currentQuestion)
+            }
 
             currentQuestionIndex++
             setCurrentQuestion()
