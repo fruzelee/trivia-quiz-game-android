@@ -15,4 +15,10 @@ feat: Implement Hilt for dependency injection
 - Annotated MainActivity with @AndroidEntryPoint
 - Annotated ViewModel classes with @HiltViewModel
 
+feat: Implement Start Page feature with Hilt and Clean Architecture
+
+- Added data models and repositories for question data
+- Created GetQuestionsUseCase for fetching questions
+- Updated StartPage to use HiltViewModel and invoke GetQuestionsUseCase
+- Updated MainActivity to display the Start Page with Jetpack Compose
 
