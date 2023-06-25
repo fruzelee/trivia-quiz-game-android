@@ -49,6 +49,6 @@ Contributions to the Quiz Game project are welcome! If you find any issues or ha
 
 ## License
 
-All rights reserved
+All rights reserved,
 copyright @ Fazle Rabbi
 fazlerabbicse@gmail.com
