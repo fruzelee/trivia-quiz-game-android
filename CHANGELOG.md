@@ -22,3 +22,8 @@ feat: Implement Start Page feature with Hilt and Clean Architecture
 - Updated StartPage to use HiltViewModel and invoke GetQuestionsUseCase
 - Updated MainActivity to display the Start Page with Jetpack Compose
 
+feat: Migrate Gradle files to Kotlin DSL (Kotlin KTX)
+
+- Migrated root-level build.gradle to Kotlin DSL
+- Migrated app-level build.gradle to Kotlin DSL
+- Updated file extensions from .gradle to .gradle.kts
