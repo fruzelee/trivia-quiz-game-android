@@ -27,3 +27,5 @@ Implement the quiz logic:
 - Handle the user's answer selection and provide immediate feedback on correctness.
 - Proceed to the next question after the user selects an answer or the timer runs out.
 
+feat: Implement navigation:
+- Use Jetpack Navigation to handle navigation between the different screens (Start Page, Quiz Page, End Page, and History Page).

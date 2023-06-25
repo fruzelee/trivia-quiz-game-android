@@ -10,9 +10,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 @Composable
-fun StartPage(onStartQuizClicked: () -> Unit, onViewHistoryClicked: () -> Unit) {
+fun StartPage(
+    navController: NavController,
+    onStartQuizClicked: () -> Unit,
+    onViewHistoryClicked: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()

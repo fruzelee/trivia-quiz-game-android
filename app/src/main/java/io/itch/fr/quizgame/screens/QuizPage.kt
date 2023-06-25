@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import io.itch.fr.quizgame.data.QuizOption
 import io.itch.fr.quizgame.data.QuizQuestion
 import kotlinx.coroutines.CoroutineScope
@@ -25,78 +26,87 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun QuizPage(
-    question: QuizQuestion,
-    onAnswerSelected: (QuizOption) -> Unit,
-    onTimerExpired: () -> Unit
+    navController: NavController,
+    questions: List<QuizQuestion>
 ) {
-    val userScore = remember { mutableStateOf(0) }
+    val currentQuestionIndex = remember { mutableStateOf(0) }
+    val currentQuestion = questions.getOrNull(currentQuestionIndex.value)
     val timer = remember { mutableStateOf(10) }
 
-    LaunchedEffect(Unit) {
-        startTimer(timer, onTimerExpired)
-    }
+    currentQuestion?.let { question ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = question.questionText,
+                style = MaterialTheme.typography.h6,
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = question.questionText,
-            style = MaterialTheme.typography.h6,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
+            question.options.forEach { option ->
+                Button(
+                    onClick = { handleAnswerSelected(option, question, navController, questions) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 8.dp)
+                ) {
+                    Text(text = option.optionText)
+                }
+            }
 
-        question.options.forEach { option ->
-            Button(
-                onClick = { handleAnswerSelected(option, question, onAnswerSelected, userScore) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 8.dp)
-            ) {
-                Text(text = option.optionText)
+            Text(
+                text = "Time remaining: ${timer.value}",
+                style = MaterialTheme.typography.body1,
+                modifier = Modifier.padding(top = 16.dp)
+            )
+        }
+
+        LaunchedEffect(Unit) {
+            startTimer(timer) {
+                handleTimerExpired(navController, questions)
             }
         }
-
-        Text(
-            text = "Time remaining: $timer",
-            style = MaterialTheme.typography.body1,
-            modifier = Modifier.padding(top = 16.dp)
-        )
+    } ?: run {
+        // No more questions, end the quiz
+        handleQuizCompleted(navController)
     }
-
-    LaunchedEffect(Unit) {
-        while (timer.value > 0) {
-            delay(1000)
-            timer.value--
-        }
-        onTimerExpired()
-    }
-
 }
 
-// Handle user's answer selection and scoring
-fun handleAnswerSelected(
+private fun handleAnswerSelected(
     option: QuizOption,
     question: QuizQuestion,
-    onAnswerSelected: (QuizOption) -> Unit,
-    userScore: MutableState<Int>
+    navController: NavController,
+    questions: List<QuizQuestion>
 ) {
-    if (option.optionId == question.correctOptionId) {
-        userScore.value++
+    // Handle answer selected
+    // ...
+    // Proceed to the next question or end the quiz when all questions are answered
+    // ...
+    val currentQuestionIndex = questions.indexOf(question)
+    if (currentQuestionIndex < questions.size - 1) {
+        // Move to the next question
+        navController.navigate("quiz")
     } else {
-        if (userScore.value > 0) {
-            userScore.value--
-        }
+        // Quiz completed
+        navController.navigate("end")
     }
-    // Proceed to the next question
-    onAnswerSelected(option)
 }
 
-// Coroutine-based timer implementation
-fun startTimer(
+private fun handleTimerExpired(
+    navController: NavController,
+    questions: List<QuizQuestion>
+) {
+    // Handle timer expired
+    // ...
+    // Quiz completed
+    navController.navigate("end")
+}
+
+private fun startTimer(
     timer: MutableState<Int>,
     onTimerExpired: () -> Unit
 ) {
@@ -107,4 +117,11 @@ fun startTimer(
         }
         onTimerExpired()
     }
+}
+
+private fun handleQuizCompleted(navController: NavController) {
+    // Handle quiz completion
+    // ...
+    // Navigate to the appropriate destination
+    navController.navigate("end")
 }

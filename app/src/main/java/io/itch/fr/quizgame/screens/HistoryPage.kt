@@ -10,10 +10,14 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import io.itch.fr.quizgame.data.QuizHistoryEntry
 
 @Composable
-fun HistoryPage(history: List<QuizHistoryEntry>) {
+fun HistoryPage(
+    navController: NavController,
+    history: List<QuizHistoryEntry>
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
