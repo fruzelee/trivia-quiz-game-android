@@ -17,10 +17,12 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun HistoryPage(
-    viewModel: HistoryViewModel = hiltViewModel()
-) {
-    val history by viewModel.history.observeAsState(emptyList())
+fun HistoryPage(viewModel: HistoryPageViewModel = hiltViewModel()) {
+    val history: List<QuizHistoryItem> by viewModel.history.collectAsState(emptyList())
+
+    LaunchedEffect(Unit) {
+        viewModel.loadQuizHistory()
+    }
 
     LazyColumn {
         items(history) { item ->
@@ -41,10 +43,5 @@ fun HistoryPage(
                 )
             }
         }
-    }
-
-    // Load quiz history when the screen is displayed
-    LaunchedEffect(Unit) {
-        viewModel.loadQuizHistory()
     }
 }

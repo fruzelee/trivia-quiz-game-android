@@ -76,3 +76,5 @@ entry in the history includes the date of the quiz and the final score. The impl
 the necessary components such as the ViewModel, UI layout, and data retrieval from SharedPreferences
 and Room database. This feature allows users to view their quiz history and track their progress
 over time.
+
+feat: Implement 'feature_start', 'feature_quiz', 'feature_end', and 'feature_history' screens
