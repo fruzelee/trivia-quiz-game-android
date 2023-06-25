@@ -87,7 +87,7 @@ dependencies {
     // Material
     implementation("androidx.compose.material:material:$composeUiVersion")
     // Material 3
-    implementation ("androidx.compose.material3:material3:$composeMaterial3Version")
+    implementation("androidx.compose.material3:material3:$composeMaterial3Version")
     // ViewModel utilities for Compose
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
     // Navigating with Compose
@@ -108,6 +108,14 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest:$composeUiVersion")
     // Testing Navigation
     androidTestImplementation("androidx.navigation:navigation-testing:$navVersion")
+    // mockito
+    testImplementation("org.mockito:mockito-core:5.3.1")
+    // kotlinx-coroutines-test
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0")
+    // core-testing
+    testImplementation ("androidx.arch.core:core-testing:2.1.0")
+
+
 
     // Hilt is a dependency injection library for Android that reduces the boilerplate of doing manual dependency injection in your project.
     implementation("com.google.dagger:hilt-android:2.46.1")
@@ -115,8 +123,8 @@ dependencies {
     kapt("androidx.hilt:hilt-compiler:1.0.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     //implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
-    implementation ("com.google.dagger:hilt-android-gradle-plugin:2.46.1")
-    kapt ("com.google.dagger:hilt-compiler:2.46.1")
+    implementation("com.google.dagger:hilt-android-gradle-plugin:2.46.1")
+    kapt("com.google.dagger:hilt-compiler:2.46.1")
 
     // Preferences DataStore (SharedPreferences like APIs)
     implementation("androidx.datastore:datastore-preferences:1.0.0")

@@ -20,6 +20,8 @@ class QuizPageViewModel @Inject constructor(
     private val _timer = MutableLiveData<Int>()
     val timer: LiveData<Int> get() = _timer
 
+    val quizQuestions: MutableLiveData<List<QuizQuestion>> = MutableLiveData()
+
     init {
         loadQuestions()
     }
@@ -74,6 +76,11 @@ class QuizPageViewModel @Inject constructor(
                 // Notify the UI or navigate to the appropriate destination
             }
         }
+    }
+
+    fun fetchQuizQuestions() {
+        val questions = quizRepository.getQuizQuestions()
+        quizQuestions.value = questions
     }
 
 }
