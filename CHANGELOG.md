@@ -51,7 +51,8 @@ feat: Implement Quiz Page feature (feature_quiz)
 - Updated QuestionRepository interface to include update operations for questions
 - Implemented updateQuestion operation in QuestionRepositoryImpl
 - Updated QuizViewModel to handle user interaction, score calculation, and question updates
-- Developed QuizPage composable function for displaying questions, handling user interaction, and showing immediate feedback
+- Developed QuizPage composable function for displaying questions, handling user interaction, and
+  showing immediate feedback
 
 feat: Provide binding for GetQuestionsUseCase in Hilt module
 
@@ -64,5 +65,14 @@ feat: Implement 'feature_end' screen and add timer feature on Quiz Page
 - Created EndPage composable function to display quiz completion screen with total score
 - Added 'Play Again' and 'View History' buttons on EndPage
 - Updated QuizPage composable function to display remaining time with timerValue state
-- Implemented timer functionality with startTimer, cancelTimer, and onTimerExpired callbacks in QuizViewModel
+- Implemented timer functionality with startTimer, cancelTimer, and onTimerExpired callbacks in
+  QuizViewModel
 - Added onTimerExpired callback in QuizPage to handle timer expiration
+
+feat: Implement 'feature_history' screen
+
+This commit implements the 'feature_history' screen, which displays the user's past scores. Each
+entry in the history includes the date of the quiz and the final score. The implementation includes
+the necessary components such as the ViewModel, UI layout, and data retrieval from SharedPreferences
+and Room database. This feature allows users to view their quiz history and track their progress
+over time.

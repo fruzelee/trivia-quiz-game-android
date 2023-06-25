@@ -17,11 +17,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 
 @Composable
 fun QuizPage(
+    navController: NavController,
     viewModel: QuizViewModel = hiltViewModel(),
-    onTimerExpired: () -> Unit
+    onQuizFinish: () -> Unit
 ) {
     val currentQuestion by viewModel.currentQuestion.collectAsState()
     val score by viewModel.score.collectAsState()
@@ -45,6 +47,15 @@ fun QuizPage(
             }
         } else {
             Text(text = "Quiz Completed!")
+            Button(
+                onClick = {
+                    viewModel.resetQuiz()
+                    onQuizFinish()
+                },
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Text(text = "Finish")
+            }
         }
         Spacer(modifier = Modifier.height(16.dp))
         Text(text = "Score: $score")
@@ -63,7 +74,7 @@ fun QuizPage(
     }
     LaunchedEffect(timerValue) {
         if (timerValue <= 0) {
-            onTimerExpired()
+            viewModel.finishQuiz()
         }
     }
 }

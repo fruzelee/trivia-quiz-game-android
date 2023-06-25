@@ -19,6 +19,7 @@ import io.itch.fr.quizgame.feature_quiz.presentation.QuizViewModel
 @Composable
 fun EndPage(
     viewModel: QuizViewModel = hiltViewModel(),
+    score: Int,
     onPlayAgainClicked: () -> Unit,
     onViewHistoryClicked: () -> Unit
 ) {
