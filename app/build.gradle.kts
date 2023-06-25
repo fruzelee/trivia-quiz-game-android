@@ -69,6 +69,7 @@ android {
 
 dependencies {
 
+    implementation("androidx.appcompat:appcompat:1.6.1")
     val composeUiVersion = "1.4.1"
     val composeMaterial3Version = "1.1.0"
     val lifecycleVersion = "2.6.1"

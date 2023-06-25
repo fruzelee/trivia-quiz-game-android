@@ -1,41 +1,40 @@
 package io.itch.fr.quizgame
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.tooling.preview.Preview
 import dagger.hilt.android.AndroidEntryPoint
-import io.itch.fr.quizgame.feature_history.presentation.HistoryPage
-import io.itch.fr.quizgame.feature_quiz.presentation.QuizPage
 import io.itch.fr.quizgame.feature_start.presentation.StartPage
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+    @ExperimentalMaterial3Api
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            QuizApp()
+            QuizGameApp()
         }
     }
 }
 
+@ExperimentalMaterial3Api
 @Composable
-fun QuizApp() {
-    val navController = rememberNavController()
-
-    NavHost(navController = navController, startDestination = "start") {
-        composable("start") {
-            StartPage(navController)
+fun QuizGameApp() {
+    MaterialTheme {
+        Surface {
+            StartPage()
         }
-        composable("quiz") {
-            QuizPage(navController)
-        }
-        composable("history") {
-            HistoryPage()
-        }
-        // Add other composable destinations as needed
     }
+}
+
+@ExperimentalMaterial3Api
+@Preview
+@Composable
+fun PreviewQuizGameApp() {
+    QuizGameApp()
 }

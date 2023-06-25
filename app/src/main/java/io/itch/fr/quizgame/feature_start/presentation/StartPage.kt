@@ -1,71 +1,46 @@
 package io.itch.fr.quizgame.feature_start.presentation
 
-
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
+import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import io.itch.fr.quizgame.feature_end.presentation.EndPage
-import io.itch.fr.quizgame.feature_history.presentation.HistoryPage
-import io.itch.fr.quizgame.feature_quiz.presentation.QuizPage
-import io.itch.fr.quizgame.feature_quiz.presentation.QuizViewModel
-
+import io.itch.fr.quizgame.feature_start.data.QuizQuestion
+import io.itch.fr.quizgame.feature_start.domain.GetQuizQuestionsUseCase
 
 @Composable
-fun StartPage(viewModel: StartPageViewModel = hiltViewModel()) {
-    val navController = rememberNavController()
-    val startQuizUseCase: StartQuizUseCase by viewModel.startQuizUseCase.collectAsState()
+fun StartPage(
+    getQuizQuestionsUseCase: GetQuizQuestionsUseCase,
+    navController: NavController
+) {
+    val quizQuestions = remember { mutableStateListOf<QuizQuestion>() }
 
     LaunchedEffect(Unit) {
-        viewModel.startQuiz()
+        quizQuestions.addAll(getQuizQuestionsUseCase.getQuizQuestions())
     }
 
-    NavHost(navController = navController, startDestination = "start") {
-        composable("start") {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(text = "Trivia Quiz")
-                Spacer(modifier = Modifier.height(16.dp))
-                Button(
-                    onClick = { navController.navigate("quiz") },
-                    modifier = Modifier.padding(16.dp)
-                ) {
-                    Text(text = "Start Quiz")
-                }
-                Button(
-                    onClick = { navController.navigate("history") },
-                    modifier = Modifier.padding(16.dp)
-                ) {
-                    Text(text = "View History")
-                }
-            }
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(text = "Welcome to Quiz Game!")
+
+        Button(
+            onClick = { navController.navigate("quiz") }
+        ) {
+            Text(text = "Start Quiz")
         }
-        composable("quiz") {
-            QuizPage(
-                onQuizFinish = { navController.navigate("end") },
-                viewModel = QuizViewModel(startQuizUseCase)
-            )
-        }
-        composable("end") {
-            EndPage()
-        }
-        composable("history") {
-            HistoryPage()
+
+        Button(
+            onClick = { navController.navigate("history") }
+        ) {
+            Text(text = "View History")
         }
     }
 }
