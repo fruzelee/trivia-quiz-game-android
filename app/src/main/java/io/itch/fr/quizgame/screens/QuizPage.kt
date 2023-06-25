@@ -1,24 +1,25 @@
 package io.itch.fr.quizgame.screens
 
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import io.itch.fr.quizgame.data.QuizOption
 import io.itch.fr.quizgame.data.QuizQuestion
+import io.itch.fr.quizgame.viewmodel.QuizPageViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -27,20 +28,34 @@ import kotlinx.coroutines.launch
 @Composable
 fun QuizPage(
     navController: NavController,
-    questions: List<QuizQuestion>
+    viewModel: QuizPageViewModel = viewModel()
 ) {
-    val currentQuestionIndex = remember { mutableStateOf(0) }
-    val currentQuestion = questions.getOrNull(currentQuestionIndex.value)
-    val timer = remember { mutableStateOf(10) }
+    val currentQuestion by viewModel.currentQuestion.observeAsState()
+    val timer by viewModel.timer.observeAsState()
 
-    currentQuestion?.let { question ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+    QuizContent(
+        currentQuestion = currentQuestion,
+        timer = timer,
+        onAnswerSelected = viewModel::onAnswerSelected,
+        onTimerExpired = viewModel::onTimerExpired,
+        onQuizCompleted = { navController.navigate("end") }
+    )
+}
+
+@Composable
+private fun QuizContent(
+    currentQuestion: QuizQuestion?,
+    timer: Int?,
+    onAnswerSelected: (QuizOption) -> Unit,
+    onTimerExpired: () -> Unit,
+    onQuizCompleted: () -> Unit
+) {
+    Column(
+        modifier = Modifier.fillMaxSize().padding(16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        currentQuestion?.let { question ->
             Text(
                 text = question.questionText,
                 style = MaterialTheme.typography.h6,
@@ -49,32 +64,27 @@ fun QuizPage(
 
             question.options.forEach { option ->
                 Button(
-                    onClick = { handleAnswerSelected(option, question, navController, questions) },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 8.dp)
+                    onClick = { onAnswerSelected(option) },
+                    modifier = Modifier.padding(bottom = 8.dp)
                 ) {
                     Text(text = option.optionText)
                 }
             }
 
-            Text(
-                text = "Time remaining: ${timer.value}",
-                style = MaterialTheme.typography.body1,
-                modifier = Modifier.padding(top = 16.dp)
-            )
-        }
-
-        LaunchedEffect(Unit) {
-            startTimer(timer) {
-                handleTimerExpired(navController, questions)
+            timer?.let { remainingTime ->
+                Text(
+                    text = "Time remaining: $remainingTime",
+                    style = MaterialTheme.typography.body1,
+                    modifier = Modifier.padding(top = 16.dp)
+                )
             }
+        } ?: run {
+            // No more questions, end the quiz
+            onQuizCompleted()
         }
-    } ?: run {
-        // No more questions, end the quiz
-        handleQuizCompleted(navController)
     }
 }
+
 
 private fun handleAnswerSelected(
     option: QuizOption,

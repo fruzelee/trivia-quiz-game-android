@@ -6,17 +6,16 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import io.itch.fr.quizgame.data.QuizQuestion
 import io.itch.fr.quizgame.screens.EndPage
 import io.itch.fr.quizgame.screens.HistoryPage
 import io.itch.fr.quizgame.screens.QuizPage
 import io.itch.fr.quizgame.screens.StartPage
 
 @Composable
-fun QuizAppNavigation(navController: NavHostController, questions: List<QuizQuestion>) {
+fun QuizAppNavigation(navController: NavHostController) {
     NavHost(navController = navController, startDestination = "start") {
         addStartPage(navController)
-        addQuizPage(navController, questions)
+        addQuizPage(navController)
         addEndPage(navController)
         addHistoryPage(navController)
     }
@@ -33,13 +32,11 @@ private fun NavGraphBuilder.addStartPage(navController: NavController) {
 }
 
 private fun NavGraphBuilder.addQuizPage(
-    navController: NavController,
-    questions: List<QuizQuestion>
+    navController: NavController
 ) {
     composable("quiz") {
         QuizPage(
-            navController = navController,
-            questions = questions
+            navController = navController
         )
     }
 }

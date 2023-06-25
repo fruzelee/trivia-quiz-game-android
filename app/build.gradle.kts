@@ -3,8 +3,6 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
-    id("com.google.devtools.ksp") version "1.8.20-1.0.11" // Depends on your kotlin version
-    id("kotlin-parcelize")
 }
 
 kotlin {
@@ -117,6 +115,8 @@ dependencies {
     kapt("androidx.hilt:hilt-compiler:1.0.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     //implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
+    implementation ("com.google.dagger:hilt-android-gradle-plugin:2.46.1")
+    kapt ("com.google.dagger:hilt-compiler:2.46.1")
 
     // Preferences DataStore (SharedPreferences like APIs)
     implementation("androidx.datastore:datastore-preferences:1.0.0")

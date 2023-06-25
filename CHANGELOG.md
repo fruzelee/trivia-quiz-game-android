@@ -29,3 +29,6 @@ Implement the quiz logic:
 
 feat: Implement navigation:
 - Use Jetpack Navigation to handle navigation between the different screens (Start Page, Quiz Page, End Page, and History Page).
+
+feat: Integrate dependency injection with Hilt:
+- Configure Hilt for dependency injection to provide necessary dependencies, such as the repository, to different parts of the application.
