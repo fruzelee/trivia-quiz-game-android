@@ -49,4 +49,6 @@ Contributions to the Quiz Game project are welcome! If you find any issues or ha
 
 ## License
 
-The Quiz Game project is licensed under the [MIT License](LICENSE).
+All rights reserved
+copyright @ Fazle Rabbi
+fazlerabbicse@gmail.com
