@@ -1,7 +1,9 @@
 package io.itch.fr.quizgame.feature_start.presentation
 
-import androidx.lifecycle.ViewModel
+import androidx.hilt.lifecycle.ViewModelInject
+import dagger.hilt.android.lifecycle.HiltViewModel
 
-class StartViewModel : ViewModel() {
+@HiltViewModel
+class StartViewModel @ViewModelInject constructor() {
     // Add any necessary logic or data for the Start page here
 }
