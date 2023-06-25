@@ -37,3 +37,9 @@ feat: Implement Quiz Page feature (feature_quiz)
 - Developed QuizPage composable function for displaying questions and handling user interaction
 - Updated StartPage to navigate to QuizPage when "Start Quiz" button is clicked
 - Updated MainActivity to use Jetpack Compose Navigation for navigation
+
+feat: Implement Start Page feature (feature_start)
+
+- Created StartPageViewModel for handling Start Page logic and navigation
+- Developed StartPage composable function for displaying Start Page UI and handling user interaction
+- Updated MainActivity to use Jetpack Compose for UI and navigate to appropriate destinations

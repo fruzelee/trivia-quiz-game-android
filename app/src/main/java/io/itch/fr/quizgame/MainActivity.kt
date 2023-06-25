@@ -26,12 +26,13 @@ class MainActivity : ComponentActivity() {
 
         NavHost(navController = navController, startDestination = "start") {
             composable("start") {
-                StartPage(
-                    onNavigateToQuizPage = { navController.navigate("quiz") }
-                )
+                StartPage()
             }
             composable("quiz") {
                 QuizPage()
+            }
+            composable("history") {
+                //HistoryPage()
             }
             // Add other composable destinations as needed
         }
