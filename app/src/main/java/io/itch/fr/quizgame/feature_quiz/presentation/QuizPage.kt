@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -18,10 +20,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun QuizPage(
-    viewModel: QuizViewModel = hiltViewModel()
+    viewModel: QuizViewModel = hiltViewModel(),
+    onTimerExpired: () -> Unit
 ) {
     val currentQuestion by viewModel.currentQuestion.collectAsState()
     val score by viewModel.score.collectAsState()
+    val timerValue by viewModel.timerValue.collectAsState()
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -44,5 +48,22 @@ fun QuizPage(
         }
         Spacer(modifier = Modifier.height(16.dp))
         Text(text = "Score: $score")
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(text = "Time Left: $timerValue")
+    }
+
+    // Timer handling
+    LaunchedEffect(Unit) {
+        viewModel.startTimer()
+    }
+    DisposableEffect(Unit) {
+        onDispose {
+            viewModel.cancelTimer()
+        }
+    }
+    LaunchedEffect(timerValue) {
+        if (timerValue <= 0) {
+            onTimerExpired()
+        }
     }
 }

@@ -6,12 +6,13 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.itch.fr.quizgame.feature_quiz.data.entities.Question
 import io.itch.fr.quizgame.feature_quiz.data.repositories.QuestionRepository
 import io.itch.fr.quizgame.feature_start.domain.GetQuestionsUseCase
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 
 @HiltViewModel
 class QuizViewModel @Inject constructor(
@@ -28,6 +29,11 @@ class QuizViewModel @Inject constructor(
 
     private val _score = MutableStateFlow(userScore)
     val score: StateFlow<Int> = _score.asStateFlow()
+
+    private val _timerValue = MutableStateFlow(DEFAULT_TIMER_VALUE)
+    val timerValue: StateFlow<Int> = _timerValue.asStateFlow()
+
+    private var timerJob: Job? = null
 
     init {
         viewModelScope.launch {
@@ -64,5 +70,24 @@ class QuizViewModel @Inject constructor(
         }
     }
 
-    // Other methods as needed...
+    fun startTimer() {
+        timerJob?.cancel()
+        timerJob = viewModelScope.launch {
+            var time = DEFAULT_TIMER_VALUE
+            while (time > 0) {
+                delay(1000)
+                time--
+                _timerValue.value = time
+            }
+        }
+    }
+
+    fun cancelTimer() {
+        timerJob?.cancel()
+        _timerValue.value = 0
+    }
+
+    companion object {
+        private const val DEFAULT_TIMER_VALUE = 10
+    }
 }

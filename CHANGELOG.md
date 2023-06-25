@@ -58,3 +58,11 @@ feat: Provide binding for GetQuestionsUseCase in Hilt module
 - Added @Provides function in AppModule to provide GetQuestionsUseCase instance
 - Updated GetQuestionsUseCase class with @Inject constructor
 - Ensured that Hilt component is regenerated with the updated bindings
+
+feat: Implement 'feature_end' screen and add timer feature on Quiz Page
+
+- Created EndPage composable function to display quiz completion screen with total score
+- Added 'Play Again' and 'View History' buttons on EndPage
+- Updated QuizPage composable function to display remaining time with timerValue state
+- Implemented timer functionality with startTimer, cancelTimer, and onTimerExpired callbacks in QuizViewModel
+- Added onTimerExpired callback in QuizPage to handle timer expiration
