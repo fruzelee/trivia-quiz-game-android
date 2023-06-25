@@ -7,8 +7,9 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import io.itch.fr.quizgame.data.QuizHistoryEntry
 import io.itch.fr.quizgame.data.QuizQuestion
+import javax.inject.Inject
 
-class QuizRepositoryImpl(private val context: Context) : QuizRepository {
+class QuizRepositoryImpl @Inject constructor(private val context: Context) : QuizRepository {
     private val sharedPreferences: SharedPreferences by lazy {
         context.getSharedPreferences("QuizApp", Context.MODE_PRIVATE)
     }

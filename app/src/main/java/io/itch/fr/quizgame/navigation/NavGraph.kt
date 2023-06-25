@@ -1,6 +1,7 @@
 package io.itch.fr.quizgame.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -36,6 +37,7 @@ private fun NavGraphBuilder.addQuizPage(
 ) {
     composable("quiz") {
         QuizPage(
+            viewModel = hiltViewModel(),
             navController = navController
         )
     }

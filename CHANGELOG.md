@@ -57,3 +57,8 @@ feat: Testing:
 - Write unit tests to ensure the correctness of individual components, such as the quiz logic,
 scoring, and data source.
 - Write UI tests to verify the correct behavior of user interactions and navigation.
+
+feat: Polish and optimize the application:
+- Refactor the codebase following Clean Architecture principles for separation of concerns and maintainability.
+- Optimize the application for performance and responsiveness.
+- Handle edge cases, such as no score going into negatives and handling different device orientations.
