@@ -52,3 +52,9 @@ feat: Implement Quiz Page feature (feature_quiz)
 - Implemented updateQuestion operation in QuestionRepositoryImpl
 - Updated QuizViewModel to handle user interaction, score calculation, and question updates
 - Developed QuizPage composable function for displaying questions, handling user interaction, and showing immediate feedback
+
+feat: Provide binding for GetQuestionsUseCase in Hilt module
+
+- Added @Provides function in AppModule to provide GetQuestionsUseCase instance
+- Updated GetQuestionsUseCase class with @Inject constructor
+- Ensured that Hilt component is regenerated with the updated bindings
