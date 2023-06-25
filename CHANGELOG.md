@@ -32,3 +32,6 @@ feat: Implement navigation:
 
 feat: Integrate dependency injection with Hilt:
 - Configure Hilt for dependency injection to provide necessary dependencies, such as the repository, to different parts of the application.
+
+feat: Handle data persistence:
+- Integrate the repository with local storage (e.g., SharedPreferences) to persist and retrieve the quiz history.
