@@ -3,8 +3,6 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
-    id("com.google.devtools.ksp") version "1.8.20-1.0.11" // Depends on your kotlin version
-    id("kotlin-parcelize")
 }
 
 kotlin {
@@ -78,12 +76,12 @@ dependencies {
     val roomVersion = "2.5.1"
 
     // Kotlin extensions
-    implementation("androidx.core:core-ktx:1.10.0")
+    implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
 
     // Compose
-    implementation("androidx.activity:activity-compose:1.7.0")
+    implementation("androidx.activity:activity-compose:1.7.2")
     implementation("androidx.compose.ui:ui:$composeUiVersion")
     implementation("androidx.compose.ui:ui-tooling-preview:$composeUiVersion")
     // Material
@@ -112,8 +110,8 @@ dependencies {
     androidTestImplementation("androidx.navigation:navigation-testing:$navVersion")
 
     // Hilt is a dependency injection library for Android that reduces the boilerplate of doing manual dependency injection in your project.
-    implementation("com.google.dagger:hilt-android:2.45")
-    kapt("com.google.dagger:hilt-android-compiler:2.45")
+    implementation("com.google.dagger:hilt-android:2.46.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.46.1")
     kapt("androidx.hilt:hilt-compiler:1.0.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     //implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
@@ -140,7 +138,7 @@ dependencies {
     implementation("androidx.room:room-ktx:$roomVersion")
 
     // Gson
-    implementation("com.google.code.gson:gson:2.8.8")
+    implementation("com.google.code.gson:gson:2.9.0")
 }
 
 // Allow references to generated code

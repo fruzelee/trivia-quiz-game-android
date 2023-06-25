@@ -7,5 +7,5 @@ plugins {
     id("com.android.application") version "${extra["android_gradle_plugin_version"]}" apply false
     id("com.android.library") version "${extra["android_gradle_plugin_version"]}" apply false
     id("org.jetbrains.kotlin.android") version "1.8.20" apply false
-    id("com.google.dagger.hilt.android") version "2.45" apply false
+    id("com.google.dagger.hilt.android") version "2.46.1" apply false
 }
