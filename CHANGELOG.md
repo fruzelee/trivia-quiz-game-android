@@ -27,3 +27,13 @@ feat: Migrate Gradle files to Kotlin DSL (Kotlin KTX)
 - Migrated root-level build.gradle to Kotlin DSL
 - Migrated app-level build.gradle to Kotlin DSL
 - Updated file extensions from .gradle to .gradle.kts
+
+feat: Implement Quiz Page feature (feature_quiz)
+
+- Added Question entity class for representing quiz questions
+- Created QuestionDao interface for data access operations
+- Implemented QuestionRepository interface using ROOM
+- Created QuizViewModel for managing quiz logic and score
+- Developed QuizPage composable function for displaying questions and handling user interaction
+- Updated StartPage to navigate to QuizPage when "Start Quiz" button is clicked
+- Updated MainActivity to use Jetpack Compose Navigation for navigation

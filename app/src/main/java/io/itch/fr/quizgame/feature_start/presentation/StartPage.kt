@@ -12,12 +12,16 @@ import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun StartPage(
-    viewModel: StartPageViewModel = hiltViewModel()
+    viewModel: StartPageViewModel = hiltViewModel(),
+    onNavigateToQuizPage: () -> Unit
 ) {
     Column {
         Text(text = "Trivia Quiz")
         Button(
-            onClick = { viewModel.startQuiz() },
+            onClick = {
+                viewModel.startQuiz()
+                onNavigateToQuizPage()
+            },
             modifier = Modifier.padding(16.dp)
         ) {
             Text(text = "Start Quiz")

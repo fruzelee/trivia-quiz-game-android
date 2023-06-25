@@ -4,8 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import io.itch.fr.quizgame.feature_quiz.presentation.QuizPage
 import io.itch.fr.quizgame.feature_start.presentation.StartPage
 
 @AndroidEntryPoint
@@ -17,10 +20,20 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    @Preview
     @Composable
     fun MyApp() {
-        // You can use a Navigation component or a simple composable function for navigation
-        StartPage()
+        val navController = rememberNavController()
+
+        NavHost(navController = navController, startDestination = "start") {
+            composable("start") {
+                StartPage(
+                    onNavigateToQuizPage = { navController.navigate("quiz") }
+                )
+            }
+            composable("quiz") {
+                QuizPage()
+            }
+            // Add other composable destinations as needed
+        }
     }
 }
