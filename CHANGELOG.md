@@ -78,3 +78,5 @@ and Room database. This feature allows users to view their quiz history and trac
 over time.
 
 feat: Implement 'feature_start', 'feature_quiz', 'feature_end', and 'feature_history' screens
+
+feat: final push for the v1, we will try to solve this assessment in a different approach now!
