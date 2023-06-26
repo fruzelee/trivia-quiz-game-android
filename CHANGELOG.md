@@ -97,3 +97,9 @@ resolved.
 
 This commit addresses the issue by providing the necessary dependency and ensures the proper
 functioning of the application.
+
+fix: Resolve bug preventing replay of the quiz after completion
+
+In the QuizPage, modified the logic for quiz completion to resolve a bug that prevented users from
+playing the quiz again from the end page. Removed the invocation of the onQuizFinished callback,
+which was causing the issue. Now, users can successfully replay the quiz after completing it.

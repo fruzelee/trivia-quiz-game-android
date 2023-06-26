@@ -41,7 +41,7 @@ import java.util.Date
 fun QuizPage(
     viewModel: QuizPageViewModel = hiltViewModel(),
     navController: NavController,
-    onQuizFinished: (Int) -> Unit // Add onQuizFinished parameter here
+    onQuizFinished: (Int) -> Unit
 ) {
     val context = LocalContext.current
     val currentQuestion by viewModel.currentQuestion.observeAsState(null)
@@ -54,15 +54,9 @@ fun QuizPage(
     // Initialize the navController in the QuizPageViewModel
     viewModel.initNavController(navController)
 
-    /* if (quizCompleted) {
-         val preferences = context.getSharedPreferences("quiz_preferences", Context.MODE_PRIVATE)
-         val savedScore = preferences.getInt("score", 0)
-         navController.navigate("end/$savedScore")
-     }*/
-
     if (quizCompleted) {
         saveScoreToHistory(score, context)
-        onQuizFinished(score) // Invoke onQuizFinished with the score
+        // Don't invoke onQuizFinished here, it will be invoked when navigating to the EndPage
     }
 
     Scaffold(
@@ -90,7 +84,9 @@ fun QuizPage(
                     QuizTimer(timerValue)
                     Spacer(modifier = Modifier.height(16.dp))
                 } else {
-                    QuizResult(score)
+                    QuizResult(score) {
+                        onQuizFinished(score) // Invoke onQuizFinished when Play Again button is clicked
+                    }
                 }
             }
         }
@@ -106,7 +102,7 @@ fun QuizTimer(timerValue: Int) {
 }
 
 @Composable
-fun QuizResult(score: Int) {
+fun QuizResult(score: Int, onPlayAgainClicked: () -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -130,6 +126,12 @@ fun QuizResult(score: Int) {
                 style = MaterialTheme.typography.subtitle1,
                 modifier = Modifier.padding(start = 8.dp)
             )
+        }
+        Button(
+            onClick = { onPlayAgainClicked() }, // Invoke onPlayAgainClicked when Play Again button is clicked
+            modifier = Modifier.padding(top = 16.dp)
+        ) {
+            Text(text = "Play Again")
         }
     }
 }
