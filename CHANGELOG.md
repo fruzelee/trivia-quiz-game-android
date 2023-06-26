@@ -135,3 +135,8 @@ Refactored the navigation logic in the QuizPageViewModel to handle the quiz fini
 navigate to the "endPage" destination with the score. Updated the addQuizPage function in the
 NavGraph to include the popUpTo modifier, ensuring the back stack is cleared up to the "quiz"
 destination when finishing the quiz.
+
+chore: Adjust quiz timings in QuizPageViewModel
+
+Increased the QUESTION_TIME_LIMIT to allow more time for each question and reduced the
+DELAY_BETWEEN_QUESTIONS to decrease the waiting time between questions in the QuizPageViewModel.

@@ -219,8 +219,8 @@ class QuizPageViewModel @Inject constructor(
     }
 
     companion object {
-        private const val QUESTION_TIME_LIMIT = 10 // in seconds
-        private const val DELAY_BETWEEN_QUESTIONS = 2000L // in milliseconds
+        private const val QUESTION_TIME_LIMIT = 19 // in seconds
+        private const val DELAY_BETWEEN_QUESTIONS = 1000L // in milliseconds
     }
 
 }
