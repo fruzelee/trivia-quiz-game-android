@@ -87,3 +87,13 @@ test: Update test cases for QuizViewModelTest
 This commit updates the test cases in the QuizViewModelTest class to ensure they reflect the changes
 made to the QuizPageViewModel class. The test cases have been revised and adjusted to cover the
 updated functionality and behavior of the view model.
+
+fix: Provide DispatcherProvider dependency in Hilt module
+
+According to the error message, the `DispatcherProvider` dependency was missing a binding in the
+Hilt component. This commit adds a `@Provides`-annotated method in the appropriate Hilt module to
+provide the `DispatcherProvider` dependency. With this change, the missing binding error is
+resolved.
+
+This commit addresses the issue by providing the necessary dependency and ensures the proper
+functioning of the application.
