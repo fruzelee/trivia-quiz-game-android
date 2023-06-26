@@ -1,5 +1,7 @@
 package io.itch.fr.quizgame.screens
 
+import android.content.Context
+import android.preference.PreferenceManager
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,11 +28,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.google.gson.Gson
 import io.itch.fr.quizgame.R
+import io.itch.fr.quizgame.data.QuizHistoryEntry
 import io.itch.fr.quizgame.data.QuizOption
 import io.itch.fr.quizgame.data.QuizQuestion
 import io.itch.fr.quizgame.viewmodel.QuizPageViewModel
 import kotlinx.coroutines.launch
+import java.util.Date
 
 @Composable
 fun QuizPage(
@@ -56,6 +61,7 @@ fun QuizPage(
      }*/
 
     if (quizCompleted) {
+        saveScoreToHistory(score, context)
         onQuizFinished(score) // Invoke onQuizFinished with the score
     }
 
@@ -99,7 +105,6 @@ fun QuizTimer(timerValue: Int) {
         style = MaterialTheme.typography.caption
     )
 }
-
 
 @Composable
 fun QuizResult(score: Int) {
@@ -161,5 +166,25 @@ fun QuizQuestionCard(
                 )
             }
         }
+    }
+}
+
+private fun saveScoreToHistory(score: Int, context: Context) {
+    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    val editor = sharedPreferences.edit()
+    val historyList = getHistoryListFromPreferences(context).toMutableList()
+    historyList.add(QuizHistoryEntry(Date().toString(), score))
+    val historyJson = Gson().toJson(historyList)
+    editor.putString("history", historyJson)
+    editor.apply()
+}
+
+private fun getHistoryListFromPreferences(context: Context): List<QuizHistoryEntry> {
+    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    val historyJson = sharedPreferences.getString("history", null)
+    return if (historyJson != null) {
+        Gson().fromJson(historyJson, Array<QuizHistoryEntry>::class.java).toList()
+    } else {
+        emptyList()
     }
 }

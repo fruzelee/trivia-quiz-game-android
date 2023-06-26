@@ -54,14 +54,18 @@ feat: Handle data persistence:
   quiz history.
 
 feat: Testing:
+
 - Write unit tests to ensure the correctness of individual components, such as the quiz logic,
-scoring, and data source.
+  scoring, and data source.
 - Write UI tests to verify the correct behavior of user interactions and navigation.
 
 feat: Polish and optimize the application:
-- Refactor the codebase following Clean Architecture principles for separation of concerns and maintainability.
+
+- Refactor the codebase following Clean Architecture principles for separation of concerns and
+  maintainability.
 - Optimize the application for performance and responsiveness.
-- Handle edge cases, such as no score going into negatives and handling different device orientations.
+- Handle edge cases, such as no score going into negatives and handling different device
+  orientations.
 
 feat: Implement navigation to End Page upon quiz completion
 
@@ -69,4 +73,11 @@ feat: Add score counting and display on EndPage
 
 fix: a minor bug
 
-feat: Add new quiz questions 
+feat: Add new quiz questions
+
+fix: Resolve issue with quiz history not showing
+
+This commit fixes an issue where the quiz history was not being displayed. The problem was caused by
+the missing implementation of the `getHistoryListFromPreferences` function. The function has been
+added to properly retrieve the history list from shared preferences and display it. Now, the quiz
+history will be shown correctly in the app.

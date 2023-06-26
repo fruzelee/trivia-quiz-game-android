@@ -16,6 +16,7 @@ import io.itch.fr.quizgame.screens.EndPage
 import io.itch.fr.quizgame.screens.HistoryPage
 import io.itch.fr.quizgame.screens.QuizPage
 import io.itch.fr.quizgame.screens.StartPage
+import java.lang.reflect.Type
 
 @Composable
 fun QuizAppNavigation(navController: NavHostController) {
@@ -50,7 +51,6 @@ private fun NavGraphBuilder.addQuizPage(navController: NavController) {
     }
 }
 
-
 private fun NavGraphBuilder.addEndPage(navController: NavController) {
     composable("end/{score}") { backStackEntry ->
         val score = backStackEntry.arguments?.getString("score")?.toIntOrNull() ?: 0
@@ -62,7 +62,6 @@ private fun NavGraphBuilder.addEndPage(navController: NavController) {
         )
     }
 }
-
 
 private fun NavGraphBuilder.addHistoryPage(navController: NavController) {
     composable("history") {
@@ -78,7 +77,7 @@ private fun getHistoryListFromPreferences(context: Context): List<QuizHistoryEnt
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
     val historyJson = sharedPreferences.getString("history", null)
     return if (historyJson != null) {
-        val type = object : TypeToken<List<QuizHistoryEntry>>() {}.type
+        val type: Type = object : TypeToken<List<QuizHistoryEntry>>() {}.type
         Gson().fromJson(historyJson, type)
     } else {
         emptyList()
