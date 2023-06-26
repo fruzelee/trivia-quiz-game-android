@@ -140,3 +140,11 @@ chore: Adjust quiz timings in QuizPageViewModel
 
 Increased the QUESTION_TIME_LIMIT to allow more time for each question and reduced the
 DELAY_BETWEEN_QUESTIONS to decrease the waiting time between questions in the QuizPageViewModel.
+
+feat: Update StartPage layout and add footer text
+
+- Updated the StartPage layout to ensure the footer text is positioned at the bottom of the screen.
+- Aligned the footer text horizontally at the center.
+- Added the "Made with ❤️ by Fazle Rabbi" text and the email address "fazlerabbicse@gmail.com" as the footer text.
+
+This commit addresses the layout issue and improves the visual presentation of the StartPage.
