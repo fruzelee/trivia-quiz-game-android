@@ -25,6 +25,11 @@ fun QuizPage(viewModel: QuizPageViewModel = hiltViewModel(), navController: NavC
     val timerValue by viewModel.timer.observeAsState(0)
     val answerFeedback by viewModel.answerFeedback.observeAsState(null)
     val coroutineScope = rememberCoroutineScope()
+    val quizCompleted by viewModel.quizCompleted.observeAsState(false)
+
+    if (quizCompleted) {
+        navController.navigate("end")
+    }
 
     Scaffold(
         topBar = {

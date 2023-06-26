@@ -26,6 +26,10 @@ class QuizPageViewModel @Inject constructor() : ViewModel() {
     private val _answerFeedback = MutableLiveData<String?>()
     val answerFeedback: LiveData<String?> get() = _answerFeedback
 
+    private val _quizCompleted = MutableLiveData<Boolean>()
+    val quizCompleted: LiveData<Boolean> get() = _quizCompleted
+
+
     private val predefinedQuestions = listOf(
         QuizQuestion(
             questionId = 1,
@@ -106,9 +110,12 @@ class QuizPageViewModel @Inject constructor() : ViewModel() {
             startTimer()
         } else {
             // Quiz completed
-            // Handle quiz completion
-            // ...
+            _quizCompleted.value = true
         }
+    }
+
+    fun restartQuiz() {
+        startQuiz()
     }
 
     companion object {

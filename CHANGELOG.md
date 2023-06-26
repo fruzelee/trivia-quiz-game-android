@@ -62,3 +62,5 @@ feat: Polish and optimize the application:
 - Refactor the codebase following Clean Architecture principles for separation of concerns and maintainability.
 - Optimize the application for performance and responsiveness.
 - Handle edge cases, such as no score going into negatives and handling different device orientations.
+
+feat: Implement navigation to End Page upon quiz completion
