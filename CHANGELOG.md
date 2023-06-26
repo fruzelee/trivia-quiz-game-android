@@ -103,3 +103,9 @@ fix: Resolve bug preventing replay of the quiz after completion
 In the QuizPage, modified the logic for quiz completion to resolve a bug that prevented users from
 playing the quiz again from the end page. Removed the invocation of the onQuizFinished callback,
 which was causing the issue. Now, users can successfully replay the quiz after completing it.
+
+build: Update Gradle configuration
+
+Updated the Gradle configuration to the latest version. This includes updating the dependencies and
+build tools to their latest versions, ensuring compatibility and taking advantage of new features
+and improvements.

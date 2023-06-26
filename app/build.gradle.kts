@@ -67,13 +67,14 @@ android {
 
 dependencies {
 
-    implementation("androidx.appcompat:appcompat:1.6.1")
     val composeUiVersion = "1.4.1"
     val composeMaterial3Version = "1.1.0"
     val lifecycleVersion = "2.6.1"
     val navVersion = "2.5.3"
     val accompanistVersion = "0.30.1"
     val roomVersion = "2.5.1"
+
+    implementation("androidx.appcompat:appcompat:1.6.1")
 
     // Kotlin extensions
     implementation("androidx.core:core-ktx:1.10.1")
@@ -113,9 +114,7 @@ dependencies {
     // kotlinx-coroutines-test
     testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0")
     // core-testing
-    testImplementation ("androidx.arch.core:core-testing:2.1.0")
-
-
+    testImplementation ("androidx.arch.core:core-testing:2.2.0")
 
     // Hilt is a dependency injection library for Android that reduces the boilerplate of doing manual dependency injection in your project.
     implementation("com.google.dagger:hilt-android:2.46.1")
