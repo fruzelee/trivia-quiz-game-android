@@ -75,6 +75,12 @@ fun QuizPage(
                 verticalArrangement = Arrangement.Center
             ) {
                 if (currentQuestion != null) {
+                    // Show live score
+                    Text(
+                        text = "Score: $score",
+                        style = MaterialTheme.typography.subtitle1,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
                     QuizQuestionCard(currentQuestion!!, answerFeedback) { selectedOption ->
                         coroutineScope.launch {
                             viewModel.onAnswerSelected(selectedOption)
@@ -113,6 +119,8 @@ fun QuizResult(score: Int, onPlayAgainClicked: () -> Unit) {
             style = MaterialTheme.typography.h5,
             modifier = Modifier.padding(bottom = 8.dp)
         )
+
+        // Show final score
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -127,6 +135,7 @@ fun QuizResult(score: Int, onPlayAgainClicked: () -> Unit) {
                 modifier = Modifier.padding(start = 8.dp)
             )
         }
+
         Button(
             onClick = { onPlayAgainClicked() }, // Invoke onPlayAgainClicked when Play Again button is clicked
             modifier = Modifier.padding(top = 16.dp)

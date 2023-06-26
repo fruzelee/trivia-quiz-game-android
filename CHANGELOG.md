@@ -115,3 +115,9 @@ fix: prevent negative scores in scoring logic
 This commit fixes a bug in the scoring logic of the QuizPageViewModel that allowed negative scores.
 Now, when a user selects an incorrect answer, the score is properly deducted, but it is prevented
 from going below zero. This ensures that the score remains non-negative throughout the game.
+
+feat: Add live score display on the QuizPage
+
+Updated the QuizPage to display the score live during the quiz. The score is now shown in real-time
+at the top of the screen. When the quiz is completed, the final score is displayed on the QuizResult
+screen. Additionally, the score is saved to the history along with the date and time of completion.
