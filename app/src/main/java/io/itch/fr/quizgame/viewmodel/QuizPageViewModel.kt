@@ -201,6 +201,16 @@ class QuizPageViewModel @Inject constructor(
         } else {
             // Quiz completed
             _quizCompleted.value = true
+            // Invoke onQuizFinished here since the quiz is completed
+            onQuizFinished(_score.value ?: 0)
+        }
+    }
+
+    fun onQuizFinished(score: Int) {
+        // Handle the quiz finished event here
+        // You can perform any necessary actions or navigation based on the quiz score
+        navController.navigate("end/$score") {
+            popUpTo("quiz") { inclusive = true }
         }
     }
 

@@ -56,7 +56,7 @@ fun QuizPage(
 
     if (quizCompleted) {
         saveScoreToHistory(score, context)
-        // Don't invoke onQuizFinished here, it will be invoked when navigating to the EndPage
+        //onQuizFinished(score) // Invoke onQuizFinished when the quiz is completed
     }
 
     Scaffold(
@@ -90,14 +90,15 @@ fun QuizPage(
                     QuizTimer(timerValue)
                     Spacer(modifier = Modifier.height(16.dp))
                 } else {
-                    QuizResult(score) {
-                        onQuizFinished(score) // Invoke onQuizFinished when Play Again button is clicked
+                    navController.navigate("end/$score") {
+                        popUpTo("quiz") { inclusive = true }
                     }
                 }
             }
         }
     )
 }
+
 
 @Composable
 fun QuizTimer(timerValue: Int) {

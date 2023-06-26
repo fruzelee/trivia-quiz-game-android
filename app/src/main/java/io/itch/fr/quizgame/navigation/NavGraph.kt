@@ -45,7 +45,7 @@ private fun NavGraphBuilder.addQuizPage(navController: NavController) {
             navController = navController,
             onQuizFinished = { score: Int ->
                 saveScoreToPreferences(score, navController.context)
-                navController.navigate("end/$score") // Pass the score as part of the navigation destination
+                navController.navigate("end/$score")
             }
         )
     }
@@ -56,8 +56,8 @@ private fun NavGraphBuilder.addEndPage(navController: NavController) {
         val score = backStackEntry.arguments?.getString("score")?.toIntOrNull() ?: 0
         EndPage(
             navController = navController,
-            score = score, // Pass the score to the EndPage
-            restartQuiz = { navController.navigate("quiz") },
+            score = score,
+            playAgain = { navController.navigate("quiz") },
             onViewHistoryClicked = { navController.navigate("history") }
         )
     }
@@ -90,4 +90,3 @@ private fun saveScoreToPreferences(score: Int, context: Context) {
     editor.putInt("score", score)
     editor.apply()
 }
-

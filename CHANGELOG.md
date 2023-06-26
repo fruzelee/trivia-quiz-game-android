@@ -128,3 +128,10 @@ Resolved the issue where the score was calculated incorrectly when the timer exp
 the score was being decremented by 1, resulting in a negative score. The score calculation has been
 updated to deduct 1 only if the updated score is greater than or equal to 0. This ensures that the
 score does not become negative when the timer runs out.
+
+feat: Update navigation in quizPageViewModel and NavGraph
+
+Refactored the navigation logic in the QuizPageViewModel to handle the quiz finished event and
+navigate to the "endPage" destination with the score. Updated the addQuizPage function in the
+NavGraph to include the popUpTo modifier, ensuring the back stack is cleared up to the "quiz"
+destination when finishing the quiz.
