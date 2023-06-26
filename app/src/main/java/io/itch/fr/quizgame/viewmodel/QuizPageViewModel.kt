@@ -36,25 +36,80 @@ class QuizPageViewModel @Inject constructor() : ViewModel() {
     private val predefinedQuestions = listOf(
         QuizQuestion(
             questionId = 1,
-            questionText = "What is the capital of France?",
+            questionText = "What is the capital of Togo?",
             options = listOf(
-                QuizOption(1, "Paris"),
-                QuizOption(2, "London"),
-                QuizOption(3, "Berlin"),
+                QuizOption(1, "Bogota"),
+                QuizOption(2, "Berlin"),
+                QuizOption(3, "Lome"),
                 QuizOption(4, "Rome")
+            ),
+            correctOptionId = 3
+        ),
+        QuizQuestion(
+            questionId = 2,
+            questionText = "Who is the father of muslim nation?",
+            options = listOf(
+                QuizOption(1, "Ibrahim(as)"),
+                QuizOption(2, "Ishmael(as)"),
+                QuizOption(3, "Isa(as)"),
+                QuizOption(4, "Adam(as)")
             ),
             correctOptionId = 1
         ),
         QuizQuestion(
-            questionId = 2,
-            questionText = "Who painted the Mona Lisa?",
+            questionId = 3,
+            questionText = "Who is the first man in Muslim religion?",
             options = listOf(
-                QuizOption(1, "Leonardo da Vinci"),
-                QuizOption(2, "Pablo Picasso"),
-                QuizOption(3, "Vincent van Gogh"),
-                QuizOption(4, "Michelangelo")
+                QuizOption(1, "Ibrahim(as)"),
+                QuizOption(2, "Ishmael(as)"),
+                QuizOption(3, "Isa(as)"),
+                QuizOption(4, "Adam(as)")
+            ),
+            correctOptionId = 4
+        ),
+        QuizQuestion(
+            questionId = 4,
+            questionText = "Which is the final religion?",
+            options = listOf(
+                QuizOption(1, "Islam"),
+                QuizOption(2, "Christianity"),
+                QuizOption(3, "Buddhism"),
+                QuizOption(4, "Judaism")
             ),
             correctOptionId = 1
+        ),
+        QuizQuestion(
+            questionId = 5,
+            questionText = "How many years will Islam last?",
+            options = listOf(
+                QuizOption(1, "2000"),
+                QuizOption(2, "1000"),
+                QuizOption(3, "1500"),
+                QuizOption(4, "1900")
+            ),
+            correctOptionId = 3
+        ),
+        QuizQuestion(
+            questionId = 6,
+            questionText = "Who is the last imam of the world?",
+            options = listOf(
+                QuizOption(1, "Imam Abu Hanifa"),
+                QuizOption(2, "Imam Malik"),
+                QuizOption(3, "Imam Shafi"),
+                QuizOption(4, "Imam Al Mahdi")
+            ),
+            correctOptionId = 4
+        ),
+        QuizQuestion(
+            questionId = 7,
+            questionText = "What is the significance of fasting on the 9th day of Dhul Hijjah, the day of Arafah?",
+            options = listOf(
+                QuizOption(1, "It is a highly recommended act of worship"),
+                QuizOption(2, "It is a day of forgiveness where 2 years' worth of sins are forgiven"),
+                QuizOption(3, "It was practiced by Prophet Muhammad (saw) and encouraged by him"),
+                QuizOption(4, "All of the above")
+            ),
+            correctOptionId = 4
         ),
         // Add more predefined quiz questions here
     )

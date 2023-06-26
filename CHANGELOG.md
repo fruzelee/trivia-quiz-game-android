@@ -68,3 +68,5 @@ feat: Implement navigation to End Page upon quiz completion
 feat: Add score counting and display on EndPage
 
 fix: a minor bug
+
+feat: Add new quiz questions 
