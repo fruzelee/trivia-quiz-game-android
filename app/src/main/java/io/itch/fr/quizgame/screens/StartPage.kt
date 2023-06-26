@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import io.itch.fr.quizgame.ui.theme.Jost
 
 @Composable
 fun StartPage(
@@ -34,13 +35,19 @@ fun StartPage(
                 onClick = onStartQuizClicked,
                 modifier = Modifier.padding(bottom = 16.dp)
             ) {
-                Text(text = "Start Quiz")
+                Text(
+                    text = "Start Quiz",
+                    fontFamily = Jost
+                )
             }
 
             Button(
                 onClick = onViewHistoryClicked
             ) {
-                Text(text = "View History")
+                Text(
+                    text = "View History",
+                    fontFamily = Jost
+                )
             }
         }
 
@@ -52,13 +59,15 @@ fun StartPage(
             Text(
                 text = "Made with ❤️ by Fazle Rabbi",
                 style = MaterialTheme.typography.body1,
-                modifier = Modifier.align(Alignment.CenterHorizontally)
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                fontFamily = Jost
             )
 
             Text(
                 text = "fazlerabbicse@gmail.com",
                 style = MaterialTheme.typography.body1,
-                modifier = Modifier.align(Alignment.CenterHorizontally)
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                fontFamily = Jost
             )
         }
     }

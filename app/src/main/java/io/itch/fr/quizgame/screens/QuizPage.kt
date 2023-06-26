@@ -33,6 +33,7 @@ import io.itch.fr.quizgame.R
 import io.itch.fr.quizgame.data.QuizHistoryEntry
 import io.itch.fr.quizgame.data.QuizOption
 import io.itch.fr.quizgame.data.QuizQuestion
+import io.itch.fr.quizgame.ui.theme.Jost
 import io.itch.fr.quizgame.viewmodel.QuizPageViewModel
 import kotlinx.coroutines.launch
 import java.util.Date
@@ -160,20 +161,27 @@ fun QuizQuestionCard(
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Text(question.questionText)
+            Text(
+                question.questionText,
+                fontFamily = Jost
+            )
             question.options.forEach { option ->
                 Button(
                     onClick = { onAnswerSelected(option) },
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text(option.text)
+                    Text(
+                        option.text,
+                        fontFamily = Jost
+                    )
                 }
             }
             if (answerFeedback != null) {
                 Text(
                     text = answerFeedback,
                     style = MaterialTheme.typography.body1,
-                    color = MaterialTheme.colors.primary
+                    color = MaterialTheme.colors.primary,
+                    fontFamily = Jost
                 )
             }
         }

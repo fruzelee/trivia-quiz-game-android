@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import io.itch.fr.quizgame.data.QuizHistoryEntry
+import io.itch.fr.quizgame.ui.theme.Jost
 
 @Composable
 fun HistoryPage(
@@ -26,7 +27,8 @@ fun HistoryPage(
         Text(
             text = "Quiz History",
             style = MaterialTheme.typography.h5,
-            modifier = Modifier.padding(bottom = 16.dp)
+            modifier = Modifier.padding(bottom = 16.dp),
+            fontFamily = Jost
         )
 
         LazyColumn {
@@ -34,7 +36,8 @@ fun HistoryPage(
                 Text(
                     text = "Date: ${entry.quizDate}, Score: ${entry.score}",
                     style = MaterialTheme.typography.body1,
-                    modifier = Modifier.padding(bottom = 8.dp)
+                    modifier = Modifier.padding(bottom = 8.dp),
+                    fontFamily = Jost
                 )
             }
         }

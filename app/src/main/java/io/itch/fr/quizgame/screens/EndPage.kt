@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import io.itch.fr.quizgame.ui.theme.Jost
 
 @Composable
 fun EndPage(
@@ -30,20 +31,27 @@ fun EndPage(
         Text(
             text = "Your Score: $score",
             style = MaterialTheme.typography.h5,
-            modifier = Modifier.padding(bottom = 16.dp)
+            modifier = Modifier.padding(bottom = 16.dp),
+            fontFamily = Jost
         )
 
         Button(
             onClick = playAgain,
             modifier = Modifier.padding(bottom = 16.dp)
         ) {
-            Text(text = "Play Again")
+            Text(
+                text = "Play Again",
+                fontFamily = Jost
+            )
         }
 
         Button(
             onClick = onViewHistoryClicked
         ) {
-            Text(text = "View History")
+            Text(
+                text = "View History",
+                fontFamily = Jost
+            )
         }
     }
 }
