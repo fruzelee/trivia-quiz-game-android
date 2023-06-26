@@ -1,6 +1,5 @@
 package io.itch.fr.quizgame.screens
 
-import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -47,11 +46,14 @@ fun QuizPage(
     val coroutineScope = rememberCoroutineScope()
     val quizCompleted by viewModel.quizCompleted.observeAsState(false)
 
-    if (quizCompleted) {
-        val preferences = context.getSharedPreferences("quiz_preferences", Context.MODE_PRIVATE)
-        val savedScore = preferences.getInt("score", 0)
-        navController.navigate("end/$savedScore")
-    }
+    // Initialize the navController in the QuizPageViewModel
+    viewModel.initNavController(navController)
+
+    /* if (quizCompleted) {
+         val preferences = context.getSharedPreferences("quiz_preferences", Context.MODE_PRIVATE)
+         val savedScore = preferences.getInt("score", 0)
+         navController.navigate("end/$savedScore")
+     }*/
 
     if (quizCompleted) {
         onQuizFinished(score) // Invoke onQuizFinished with the score
