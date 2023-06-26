@@ -17,7 +17,7 @@ import androidx.navigation.NavController
 fun EndPage(
     navController: NavController,
     score: Int,
-    onPlayAgainClicked: () -> Unit,
+    restartQuiz: () -> Unit, // Add the restartQuiz parameter
     onViewHistoryClicked: () -> Unit
 ) {
     Column(
@@ -34,7 +34,10 @@ fun EndPage(
         )
 
         Button(
-            onClick = onPlayAgainClicked,
+            onClick = {
+                restartQuiz()
+                //onPlayAgainClicked()
+            },
             modifier = Modifier.padding(bottom = 16.dp)
         ) {
             Text(text = "Play Again")

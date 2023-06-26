@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.itch.fr.quizgame.data.QuizOption
 import io.itch.fr.quizgame.data.QuizQuestion
@@ -28,6 +29,8 @@ class QuizPageViewModel @Inject constructor() : ViewModel() {
 
     private val _quizCompleted = MutableLiveData<Boolean>()
     val quizCompleted: LiveData<Boolean> get() = _quizCompleted
+
+    private lateinit var navController: NavController
 
 
     private val predefinedQuestions = listOf(
@@ -84,15 +87,27 @@ class QuizPageViewModel @Inject constructor() : ViewModel() {
 
     suspend fun onAnswerSelected(option: QuizOption) {
         val currentQuestion = currentQuestion.value ?: return
-        if (option.optionId == currentQuestion.correctOptionId) {
-            _score.value = (_score.value ?: 0) + 1
-            _answerFeedback.value = "Correct!"
+
+        if (currentQuestionIndex >= predefinedQuestions.size) {
+            val score = _score.value ?: 0
+            navController.navigate("end/$score")
         } else {
-            _score.value = (_score.value ?: 0) - 1
-            _answerFeedback.value = "Incorrect!"
+            // ... existing code ...
+            if (option.optionId == currentQuestion.correctOptionId) {
+                _score.value = (_score.value ?: 0) + 1
+                _answerFeedback.value = "Correct!"
+            } else {
+                _score.value = (_score.value ?: 0) - 1
+                _answerFeedback.value = "Incorrect!"
+            }
+            delay(DELAY_BETWEEN_QUESTIONS)
+            showNextQuestion()
         }
-        delay(DELAY_BETWEEN_QUESTIONS)
-        showNextQuestion()
+
+    }
+
+    fun initNavController(navController: NavController) {
+        this.navController = navController
     }
 
     private suspend fun onTimerExpired() {

@@ -16,7 +16,7 @@ import io.itch.fr.quizgame.data.QuizHistoryEntry
 @Composable
 fun HistoryPage(
     navController: NavController,
-    history: List<QuizHistoryEntry>
+    historyList: List<QuizHistoryEntry>
 ) {
     Column(
         modifier = Modifier
@@ -30,7 +30,7 @@ fun HistoryPage(
         )
 
         LazyColumn {
-            items(history) { entry ->
+            items(historyList) { entry ->
                 Text(
                     text = "Date: ${entry.quizDate}, Score: ${entry.score}",
                     style = MaterialTheme.typography.body1,

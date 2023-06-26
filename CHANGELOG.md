@@ -64,3 +64,5 @@ feat: Polish and optimize the application:
 - Handle edge cases, such as no score going into negatives and handling different device orientations.
 
 feat: Implement navigation to End Page upon quiz completion
+
+feat: Add score counting and display on EndPage
