@@ -155,3 +155,14 @@ feat: Apply Jost font globally using FontFamilyProvider
 This commit applies the Jost font globally in the app using the FontFamilyProvider from the
 Accompanist library. The Jost font is now used as the default font for all text components,
 providing a consistent and enhanced typography experience throughout the app.
+
+feat: Add footer text to EndPage
+
+- Updated the EndPage layout to include a footer section.
+- Added the "Made with ❤️ by Fazle Rabbi" text and the email address "fazlerabbicse@gmail.com" as
+  the footer text.
+- Aligned the footer text horizontally at the center.
+- Used the Jost font for consistent typography throughout the app.
+
+This commit enhances the visual presentation of the EndPage by adding a footer section with the
+creator's information and improves the overall app's typography by applying the Jost font.

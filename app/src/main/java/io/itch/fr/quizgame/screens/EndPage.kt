@@ -3,7 +3,10 @@ package io.itch.fr.quizgame.screens
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -24,7 +27,8 @@ fun EndPage(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(16.dp)
+            .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -35,23 +39,41 @@ fun EndPage(
             fontFamily = Jost
         )
 
-        Button(
-            onClick = playAgain,
-            modifier = Modifier.padding(bottom = 16.dp)
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxWidth()
         ) {
-            Text(
-                text = "Play Again",
-                fontFamily = Jost
-            )
+            Button(
+                onClick = playAgain,
+                modifier = Modifier.padding(bottom = 16.dp)
+            ) {
+                Text(
+                    text = "Play Again",
+                    fontFamily = Jost
+                )
+            }
+
+            Button(
+                onClick = onViewHistoryClicked
+            ) {
+                Text(
+                    text = "View History",
+                    fontFamily = Jost
+                )
+            }
         }
 
-        Button(
-            onClick = onViewHistoryClicked
-        ) {
-            Text(
-                text = "View History",
-                fontFamily = Jost
-            )
-        }
+        Text(
+            text = "Made with ❤️ by Fazle Rabbi",
+            style = MaterialTheme.typography.caption,
+            modifier = Modifier.padding(top = 16.dp),
+            fontFamily = Jost
+        )
+        Text(
+            text = "fazlerabbicse@gmail.com",
+            style = MaterialTheme.typography.caption,
+            fontFamily = Jost
+        )
     }
 }
