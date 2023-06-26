@@ -184,10 +184,12 @@ class QuizPageViewModel @Inject constructor(
     }
 
     private suspend fun onTimerExpired() {
-        _score.value = (_score.value ?: 0) - 1
-        _answerFeedback.value = "Time's up! Incorrect!"
-        delay(DELAY_BETWEEN_QUESTIONS)
-        showNextQuestion()
+        if (currentQuestionIndex < predefinedQuestions.size) {
+            _score.value = (_score.value ?: 0).takeIf { it > 0 }?.minus(1) ?: 0
+            _answerFeedback.value = "Time's up! Incorrect!"
+            delay(DELAY_BETWEEN_QUESTIONS)
+            showNextQuestion()
+        }
     }
 
     private fun showNextQuestion() {

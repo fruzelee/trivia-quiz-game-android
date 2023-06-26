@@ -121,3 +121,10 @@ feat: Add live score display on the QuizPage
 Updated the QuizPage to display the score live during the quiz. The score is now shown in real-time
 at the top of the screen. When the quiz is completed, the final score is displayed on the QuizResult
 screen. Additionally, the score is saved to the history along with the date and time of completion.
+
+fix: Correct score calculation on timer expiration
+
+Resolved the issue where the score was calculated incorrectly when the timer expired. Previously,
+the score was being decremented by 1, resulting in a negative score. The score calculation has been
+updated to deduct 1 only if the updated score is greater than or equal to 0. This ensures that the
+score does not become negative when the timer runs out.
