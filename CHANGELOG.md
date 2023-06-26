@@ -81,3 +81,9 @@ This commit fixes an issue where the quiz history was not being displayed. The p
 the missing implementation of the `getHistoryListFromPreferences` function. The function has been
 added to properly retrieve the history list from shared preferences and display it. Now, the quiz
 history will be shown correctly in the app.
+
+test: Update test cases for QuizViewModelTest
+
+This commit updates the test cases in the QuizViewModelTest class to ensure they reflect the changes
+made to the QuizPageViewModel class. The test cases have been revised and adjusted to cover the
+updated functionality and behavior of the view model.

@@ -8,13 +8,18 @@ import androidx.navigation.NavController
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.itch.fr.quizgame.data.QuizOption
 import io.itch.fr.quizgame.data.QuizQuestion
+import io.itch.fr.quizgame.repository.QuizRepository
+import io.itch.fr.quizgame.utils.DispatcherProvider
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class QuizPageViewModel @Inject constructor() : ViewModel() {
+class QuizPageViewModel @Inject constructor(
+    private val quizRepository: QuizRepository,
+    private val dispatcherProvider: DispatcherProvider
+) : ViewModel() {
     private val _currentQuestion = MutableLiveData<QuizQuestion>()
     val currentQuestion: LiveData<QuizQuestion> get() = _currentQuestion
 
@@ -32,6 +37,16 @@ class QuizPageViewModel @Inject constructor() : ViewModel() {
 
     private lateinit var navController: NavController
 
+    // for test cases
+    private val _quizQuestions = MutableLiveData<List<QuizQuestion>>()
+    val quizQuestions: LiveData<List<QuizQuestion>> = _quizQuestions
+
+    fun fetchQuizQuestions() {
+        viewModelScope.launch(dispatcherProvider.io) {
+            val questions = quizRepository.getQuizQuestions()
+            _quizQuestions.postValue(questions)
+        }
+    }
 
     private val predefinedQuestions = listOf(
         QuizQuestion(
@@ -110,7 +125,7 @@ class QuizPageViewModel @Inject constructor() : ViewModel() {
                 QuizOption(4, "All of the above")
             ),
             correctOptionId = 4
-        ),
+        )
         // Add more predefined quiz questions here
     )
 
@@ -192,4 +207,5 @@ class QuizPageViewModel @Inject constructor() : ViewModel() {
         private const val QUESTION_TIME_LIMIT = 10 // in seconds
         private const val DELAY_BETWEEN_QUESTIONS = 2000L // in milliseconds
     }
+
 }

@@ -65,7 +65,6 @@ fun QuizPage(
         onQuizFinished(score) // Invoke onQuizFinished with the score
     }
 
-
     Scaffold(
         topBar = {
             TopAppBar(
@@ -122,7 +121,7 @@ fun QuizResult(score: Int) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
-                painter = painterResource(id = R.drawable.ic_launcher_background),
+                painter = painterResource(id = R.drawable.ic_high_score),
                 contentDescription = "Score Icon",
                 tint = MaterialTheme.colors.primary
             )
