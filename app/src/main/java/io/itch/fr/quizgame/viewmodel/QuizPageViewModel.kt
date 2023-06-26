@@ -120,7 +120,10 @@ class QuizPageViewModel @Inject constructor(
             questionText = "What is the significance of fasting on the 9th day of Dhul Hijjah, the day of Arafah?",
             options = listOf(
                 QuizOption(1, "It is a highly recommended act of worship"),
-                QuizOption(2, "It is a day of forgiveness where 2 years' worth of sins are forgiven"),
+                QuizOption(
+                    2,
+                    "It is a day of forgiveness where 2 years' worth of sins are forgiven"
+                ),
                 QuizOption(3, "It was practiced by Prophet Muhammad (saw) and encouraged by him"),
                 QuizOption(4, "All of the above")
             ),
@@ -167,13 +170,13 @@ class QuizPageViewModel @Inject constructor(
                 _score.value = (_score.value ?: 0) + 1
                 _answerFeedback.value = "Correct!"
             } else {
-                _score.value = (_score.value ?: 0) - 1
+                val updatedScore = (_score.value ?: 0) - 1
+                _score.value = if (updatedScore >= 0) updatedScore else 0
                 _answerFeedback.value = "Incorrect!"
             }
             delay(DELAY_BETWEEN_QUESTIONS)
             showNextQuestion()
         }
-
     }
 
     fun initNavController(navController: NavController) {

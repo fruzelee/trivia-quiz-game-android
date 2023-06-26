@@ -109,3 +109,9 @@ build: Update Gradle configuration
 Updated the Gradle configuration to the latest version. This includes updating the dependencies and
 build tools to their latest versions, ensuring compatibility and taking advantage of new features
 and improvements.
+
+fix: prevent negative scores in scoring logic
+
+This commit fixes a bug in the scoring logic of the QuizPageViewModel that allowed negative scores.
+Now, when a user selects an incorrect answer, the score is properly deducted, but it is prevented
+from going below zero. This ensures that the score remains non-negative throughout the game.
